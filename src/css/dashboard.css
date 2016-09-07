@@ -1,0 +1,120 @@
+/* Calendar: a Javascript class for Mootools that adds accessible and unobtrusive date pickers to your form elements <http://electricprism.com/aeron/calendar> */
+/* Dashboard CSS for Calendar (navigation: 1), Copyright (c) 2007 Aeron Glemann <http://electricprism.com/aeron> */
+
+input.dashboard,
+select.dashboard {
+	width: 149px;
+}
+
+button.dashboard {
+	background: url(dashboard-icon.gif);
+	border: 0;
+	cursor: pointer;
+	float: left;
+	height: 20px;
+	margin-right: 10px;
+	width: 20px;
+}
+button.dashboard:hover,
+button.dashboard.active {
+	background-position: 0 20px;
+}
+
+div.dashboard {
+	background: url(dashboard.png);
+	height: 175px;
+	padding: 0 12px;
+	text-align: center;
+	width: 147px;
+}	
+	div.dashboard * {
+		margin: 0;
+		padding: 0;
+	}	
+	div.dashboard div {
+		background: none !important;
+		cursor: move;
+		height: 165px;
+		overflow: hidden;
+		padding-top: 10px;
+		position: relative;
+		width: 147px;
+	}	
+	
+	div.dashboard caption {
+		color: #CF0;
+		font: normal 12px/17px Arial, Helvetica, sans-serif;
+		padding-top: 4px;
+		text-align: center;
+		width: 100%;
+	}
+	div.dashboard caption a {
+		cursor: pointer;
+		display: block;
+		height: 11px;
+		overflow: hidden;
+		position: absolute;
+		text-indent: -100px;
+		top: 16px;
+		width: 11px;
+	}
+	div.dashboard caption a.prev {
+		background-image: url(dashboard-prev.gif);
+		left: 1px;
+	}
+	div.dashboard caption a.next {
+		background-image: url(dashboard-next.gif);
+		right: 1px;
+	}
+	div.dashboard caption a:hover {
+		background-position: 0 11px;
+	}
+	div.dashboard caption span {
+		height: 25px;
+		position: relative;
+		text-align: center;
+	}
+	div.dashboard caption span.month {
+		padding-right: 8px;
+	}
+	div.dashboard caption span.month:after {
+		content: ',';
+	}
+
+	div.dashboard table {
+		border: 0;
+		border-collapse: collapse;
+		border-spacing: 0;
+		cursor: default;
+		margin: 0 auto;
+		overflow: hidden;
+		width: 147px;
+	}
+	div.dashboard td,
+	div.dashboard th {
+		border: 0;
+		color: #999;
+		font: normal 12px Arial, Helvetica, sans-serif;
+		height: 19px;
+		text-align: center;
+		width: 21px;
+	}
+	div.dashboard td {
+		color: #333;
+		font-size: 11px;
+		padding-right: 5px;
+		text-align: right;
+		width: 16px;
+	}
+	div.dashboard td.invalid {
+		color: #666;
+	}
+	div.dashboard td.valid {
+		color: #FFF;
+		cursor: pointer;
+	}
+	div.dashboard td.active,
+	div.dashboard td.hover {
+		color: #CF0;
+		cursor: pointer;
+	}

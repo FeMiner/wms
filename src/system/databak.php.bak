@@ -1,0 +1,835 @@
+<?php   
+
+class Db   
+
+{   
+
+    var $conn;   
+
+   
+
+    function Db($host="localhost",$user="root",$pass="hust",$db="db_wms")   
+
+    {   
+
+      if(!$this->conn=mysql_connect($host,$user,$pass))   
+
+      die("can't connect to mysql sever");   
+
+      mysql_select_db($db,$this->conn);   
+
+     // mysql_query("SET NAMES 'UTF-8'");   
+	 mysql_query("set character set gb2312");
+     mysql_query("set names gb2312");
+
+    }   
+
+   
+
+    function execute($sql)   
+
+    {   
+
+       return mysql_query($sql,$this->conn);   
+
+    }   
+
+   
+
+    function findCount($sql)   
+
+    {   
+
+        $result=$this->execute($sql);   
+
+        return mysql_num_rows($result);   
+
+    }   
+
+   
+
+    function findBySql($sql)   
+
+    {   
+
+        $array=array();   
+
+        $result=mysql_query($sql);   
+
+        $i=0;   
+
+        while($row=mysql_fetch_assoc($result))   
+
+           {   
+
+          $array[$i]=$row;    
+
+       $i++;   
+
+           }   
+
+        return $array;   
+
+    }   
+
+   
+
+    //$con�ļ������   
+
+    //�գ�����ȫ����¼   
+
+    //array��eg. array('id'=>'1') ����id=1�ļ�¼   
+
+    //string :eg. 'id=1' ����id=1�ļ�¼   
+
+    function toExtJson($table,$start="0",$limit="10",$cons="")   
+
+    {   
+
+       $sql=$this->generateSql($table,$cons);   
+
+       $totalNum=$this->findCount($sql);   
+
+       $result=$this->findBySql($sql." LIMIT ".$start." ,".$limit);   
+
+       $resultNum = count($result);//��ǰ�����   
+
+      $str="";   
+
+      $str.= "{";   
+
+      $str.= "'totalCount':'$totalNum',";   
+
+      $str.="'rows':";   
+
+      $str.="[";   
+
+      for($i=0;$i<$resultNum;$i++){   
+
+       $str.="{";    
+
+       $count=count($result[$i]);   
+
+       $j=1;   
+
+       foreach($result[$i] as $key=>$val)   
+
+       {   
+
+       if($j<$count)   
+
+       {   
+
+       $str.="'".$key."':'".$val."',";   
+
+       }   
+
+       elseif($j==$count)   
+
+       {   
+
+       $str.="'".$key."':'".$val."'";   
+
+       }   
+
+       $j++;   
+
+                }   
+
+           
+
+       $str.="}";   
+
+       if ($i != $resultNum-1) {   
+
+                 $str.= ",";   
+
+             }   
+
+      }   
+
+      $str.="]";   
+
+      $str.="}";   
+
+      return $str;     
+
+    }   
+
+   
+
+    function generateSql($table,$cons)   
+
+    {   
+
+        $sql="";//sql����   
+
+       $sql="select * from ".$table;   
+
+       if($cons!="")   
+
+       {   
+
+       if(is_array($cons))   
+
+       {   
+
+         $k=0;   
+
+         foreach($cons as $key=>$val)   
+
+      {   
+
+      if($k==0)   
+
+      {   
+
+      $sql.="where '";   
+
+      $sql.=$key;   
+
+      $sql.="'='";   
+
+      $sql.=$val."'";   
+
+      }else 
+
+      {   
+
+      $sql.="and '";   
+
+      $sql.=$key;   
+
+      $sql.="'='";   
+
+      $sql.=$val."'";   
+
+      }   
+
+      $k++;   
+
+      }   
+
+       }else 
+
+       {   
+
+       $sql.=" where ".$cons;   
+
+       }   
+
+       }   
+
+       return $sql;   
+
+    }   
+
+   
+
+    function toExtXml($table,$start="0",$limit="10",$cons="")   
+
+    {   
+
+       $sql=$this->generateSql($table,$cons);   
+
+       $totalNum=$this->findCount($sql);   
+
+       $result=$this->findBySql($sql." LIMIT ".$start." ,".$limit);   
+
+       $resultNum = count($result);//��ǰ�����   
+
+       header("Content-Type: text/xml");   
+
+       $xml="<?xml version=\"1.0\"  encoding=\"utf-8\" ?>\n";   
+
+       $xml.="<xml>\n";   
+
+       $xml.="\t<totalCount>".$totalNum."</totalCount>\n";   
+
+       $xml.="\t<items>\n";   
+
+       for($i=0;$i<$resultNum;$i++){   
+
+       $xml.="\t\t<item>\n";   
+
+       foreach($result[$i] as $key=>$val)   
+
+       $xml.="\t\t\t<".$key.">".$val."</".$key.">\n";   
+
+       $xml.="\t\t</item>\n";   
+
+       }   
+
+        $xml.="\t</items>\n";   
+
+        $xml.="</xml>\n";   
+
+        return $xml;   
+
+    }   
+
+   
+
+    //���word���   
+
+    function toWord($table,$mapping,$fileName)   
+
+    {   
+
+       header('Content-type: application/doc');    
+
+          header('Content-Disposition: attachment; filename="'.$fileName.'.doc"');    
+
+          echo '<html xmlns:o="urn:schemas-microsoft-com:office:office"   
+
+           xmlns:w="urn:schemas-microsoft-com:office:word"   
+
+           xmlns="[url=http://www.w3.org/TR/REC-html40]http://www.w3.org/TR/REC-html40[/url]">   
+
+        <head>   
+
+           <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
+
+        <title>'.$fileName.'</title>   
+
+        </head>   
+
+        <body>';    
+
+        echo'<table border=1><tr>';   
+
+        if(is_array($mapping))   
+
+        {   
+
+          foreach($mapping as $key=>$val)   
+
+       echo'<td>'.$val.'</td>';   
+
+        }   
+
+        echo'</tr>';   
+
+        $results=$this->findBySql('select * from '.$table);   
+
+        foreach($results as $result)   
+
+        {   
+
+          echo'<tr>';   
+
+          foreach($result as $key=>$val)   
+
+       echo'<td>'.$val.'</td>';   
+
+       echo'</tr>';   
+
+        }   
+
+        echo'</table>';   
+
+        echo'</body>';   
+
+        echo'</html>';   
+
+    }   
+
+   
+
+    function toExcel($table,$mapping,$fileName)   
+
+    {   
+
+      header("Content-type:application/vnd.ms-excel");   
+
+         header("Content-Disposition:filename=".$fileName.".xls");   
+
+      echo'<html xmlns:o="urn:schemas-microsoft-com:office:office" 
+
+           xmlns:x="urn:schemas-microsoft-com:office:excel" 
+
+           xmlns="[url=http://www.w3.org/TR/REC-html40]http://www.w3.org/TR/REC-html40[/url]">   
+
+           <head>   
+
+           <meta http-equiv="expires" content="Mon, 06 Jan 1999 00:00:01 GMT">   
+
+           <meta http-equiv=Content-Type content="text/html; charset=iso-8859-1">   
+
+           <!--[if gte mso 9]><xml>   
+
+           <x:ExcelWorkbook>   
+
+               <x:ExcelWorksheets>   
+
+                       <x:ExcelWorksheet>   
+
+                           <x:Name></x:Name>   
+
+                           <x:WorksheetOptions>   
+
+                               <x:DisplayGridlines/>   
+
+                           </x:WorksheetOptions>   
+
+                       </x:ExcelWorksheet>   
+
+               </x:ExcelWorksheets>   
+
+           </x:ExcelWorkbook>   
+
+           </xml><![endif]-->   
+
+           </head>   
+
+        <body link=blue vlink=purple leftmargin=0 topmargin=0>';    
+
+        echo'<table width="100%" border="0" cellspacing="0" cellpadding="0">';   
+
+           echo'<tr>';   
+
+        if(is_array($mapping))   
+
+        {   
+
+          foreach($mapping as $key=>$val)   
+
+       echo'<td>'.$val.'</td>';   
+
+        }   
+
+        echo'</tr>';   
+
+        $results=$this->findBySql('select * from '.$table);   
+
+        foreach($results as $result)   
+
+        {   
+
+          echo'<tr>';   
+
+          foreach($result as $key=>$val)   
+
+       echo'<td>'.$val.'</td>';   
+
+       echo'</tr>';   
+
+        }   
+
+        echo'</table>';   
+
+        echo'</body>';   
+
+        echo'</html>';   
+
+    }   
+
+   
+
+    function Backup($table)   
+
+    {   
+
+      if(is_array ($table))   
+
+      {   
+
+       $str="";   
+
+       foreach($table as $tab)   
+
+       $str.=$this->get_table_content($tab);   
+
+       return $str;   
+
+      }else{   
+
+       return $this->get_table_content($table);   
+
+      }   
+
+    }   
+
+   
+
+    function Backuptofile($table,$file)   
+
+    {   
+
+      header("Content-disposition: filename=$file.sql");//��������ļ���   
+
+      header("Content-type: application/octetstream");   
+
+      header("Pragma: no-cache");   
+
+      header("Expires: 0");   
+
+      if(is_array ($table))   
+
+      {   
+
+       $str="";   
+
+       foreach($table as $tab)   
+
+       $str.=$this->get_table_content($tab);   
+
+       echo $str;   
+
+      }else{   
+
+       echo $this->get_table_content($table);   
+
+      }   
+
+    }   
+
+   
+
+    function Restore($table,$file="",$content="")   
+
+    {   
+
+      //�ų�file��content��Ϊ�ջ��߶���Ϊ�յ����   
+
+      if(($file==""&&$content=="")||($file!=""&&$content!=""))   
+
+      echo"��������";   
+
+      $this->truncate($table);   
+
+      if($file!="")   
+
+      {   
+
+       if($this->RestoreFromFile($file))   
+
+       return true;   
+
+       else 
+
+       return false;   
+
+      }   
+
+      if($content!="")   
+
+      {   
+
+       if($this->RestoreFromContent($content))   
+
+       return true;   
+
+       else 
+
+       return false;   
+
+      }   
+
+    }   
+
+   
+
+    //��ձ���Ա�ָ�����   
+
+    function truncate($table)   
+
+    {   
+
+      if(is_array ($table))   
+
+      {   
+
+       $str="";   
+
+       foreach($table as $tab)   
+
+       $this->execute("TRUNCATE TABLE $tab");   
+
+      }else{   
+
+       $this->execute("TRUNCATE TABLE $table");   
+
+      }   
+
+    }   
+
+   
+
+    function get_table_content($table)   
+
+    {   
+
+      $results=$this->findBySql("select * from $table");   
+
+      $temp = "";   
+
+      $crlf="<br>";   
+
+      foreach($results as $result)   
+
+      {   
+
+           
+
+       /*(";  
+
+      foreach($result as $key=>$val)  
+
+      {  
+
+       $schema_insert .= " `".$key."`,";  
+
+      }  
+
+      $schema_insert = ereg_replace(",$", "", $schema_insert);  
+
+      $schema_insert .= ")   
+
+      */ 
+
+      $schema_insert = "INSERT INTO  $table VALUES (";   
+
+      foreach($result as $key=>$val)   
+
+      {   
+
+       if($val != "")   
+
+       $schema_insert .= " '".addslashes($val)."',";   
+
+       else 
+
+       $schema_insert .= "NULL,";   
+
+      }   
+
+      $schema_insert = ereg_replace(",$", "", $schema_insert);   
+
+      $schema_insert .= ");$crlf";   
+
+      $temp = $temp.$schema_insert ;   
+
+      }   
+
+      return $temp;   
+
+    }   
+
+   
+
+    function RestoreFromFile($file){   
+
+      if (false !== ($fp = fopen($file, 'r'))) {   
+
+       $sql_queries = trim(fread($fp, filesize($file)));   
+
+       $this->splitMySqlFile($pieces, $sql_queries);   
+
+       foreach ($pieces as $query) {   
+
+        if(!$this->execute(trim($query)))   
+
+        return false;   
+
+       }   
+
+       return true;   
+
+      }   
+
+      return false;   
+
+    }   
+
+   
+
+    function RestoreFromContent($content)   
+
+    {   
+
+      $content = trim($content);   
+
+      $this->splitMySqlFile($pieces, $content);   
+
+      foreach ($pieces as $query) {   
+
+       if(!$this->execute(trim($query)))   
+
+       return false;   
+
+      }   
+
+      return true;   
+
+    }   
+
+   
+
+    function splitMySqlFile(&$ret, $sql)   
+
+    {   
+
+      $sql= trim($sql);   
+
+      $sql=split(';',$sql);   
+
+      $arr=array();   
+
+      foreach($sql as $sq)   
+
+      {   
+
+        if($sq!="");   
+
+        $arr[]=$sq;   
+
+      }   
+
+      $ret=$arr;   
+
+      return true;   
+
+    }   
+
+}   
+
+   
+
+   
+
+$db=new db();   
+
+   
+
+// ���� word    
+
+//$map=array('id','name','pwd','authority','state');    
+
+//echo  $db->toWord('tb_admin',$map,'����');   
+
+   
+
+// ���� Excel    
+
+//$map=array('id','name','pwd','authority','state');   
+
+//echo  $db->toExcel('tb_admin',$map,'����');   
+
+   
+
+// ���� Xml    
+
+//echo  $db->toExtXml('test',0,20);   
+
+   
+
+// ���� Json    
+
+//echo  $db->toExtJson('test',0,20);   
+
+   
+
+//����       
+
+//echo $db->Backuptofile('test','backup'); 
+$flag=$_POST[flag];
+$filename =$_POST[filename];
+//echo $flag;
+$link =mysql_connect("localhost","root","hust");
+
+$tables = mysql_list_tables(db_wms);
+$cachetables = array(); $tableselected = array();
+
+while ($table = mysql_fetch_row($tables))
+{
+   $cachetables[$table[0]] = $table[0];
+   $tableselected[$table[0]] = 1;
+}
+
+$table = $cachetables;
+//$filename =  db_wms . "_" . date("Y_m_d_H_i_s") . ".sql";
+//$filename =$_POST[filename];
+$path = "sql/" . $filename;
+
+$filehandle = fopen($path, "w");
+
+$result = mysql_query("SHOW tables");
+while ($currow = mysql_fetch_array($result))
+{
+   if (isset($table[$currow[0]]))
+   {
+     sqldumptable($currow[0], $filehandle);
+     fwrite($filehandle, "\n\n\n");
+   }
+}
+
+fclose($filehandle);
+
+//$update_data = array('filename' => $filename, 'postdate' => mktime());
+//$db->insert('backup_db', $update_data);
+ 	//$path = $_GET['path'];
+
+// data dump functions
+function sqldumptable($table, $fp = 0)
+{
+    $tabledump = "DROP TABLE IF EXISTS " . $table . ";\n";
+    $result = mysql_fetch_array(mysql_query("SHOW CREATE TABLE " . $table));
+    //echo "SHOW CREATE TABLE $table";
+    $tabledump .= $result[1] . ";\r\n";
+
+    if ($fp) {
+        fwrite($fp, $tabledump);
+    } else {
+        echo $tabledump;
+    }
+    // get data
+    $rows = mysql_query("SELECT * FROM " . $table);
+    // $numfields=$DB->num_fields($rows);
+    $numfields = mysql_num_fields($rows);
+    while ($row = mysql_fetch_array($rows)) {
+        $tabledump = "INSERT INTO " . $table . " VALUES(";
+
+        $fieldcounter = -1;
+        $firstfield = 1;
+        // get each field's data
+        while (++$fieldcounter < $numfields) {
+            if (!$firstfield) {
+                $tabledump .= ", ";
+            } else {
+                $firstfield = 0;
+            }
+
+            if (!isset($row[$fieldcounter])) {
+                $tabledump .= "NULL";
+            } else {
+                $tabledump .= "'" . mysql_escape_string($row[$fieldcounter]) . "'";
+            }
+        }
+
+        $tabledump .= ");\n";
+
+        if ($fp) {
+            fwrite($fp, $tabledump);
+        } else {
+            echo $tabledump;
+        }
+    }
+    mysql_free_result($rows);
+}
+
+
+
+	if(!empty($path) and !is_null($path) and ($flag==1)){
+		$filename=basename($path);
+		$file=fopen($path,"r");
+		header("Content-type:application/octet-stream");
+		header("Accept-ranges:bytes");
+		header("Accept-length:".filesize($path));
+		header("Content-Disposition:attachment;filename=".$filename);
+		echo fread($file,filesize($path));
+		fclose($file);
+		exit;
+	} 
+	echo "<script>alert('Server backup success!');window.location='../desk.php';</script>";
+?>

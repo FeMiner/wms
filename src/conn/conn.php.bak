@@ -1,0 +1,5 @@
+<?php 
+$id=mysql_connect("localhost","root","hust");
+mysql_select_db("db_shop",$id);
+mysql_query("set names gb2312");
+?>

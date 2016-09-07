@@ -1,0 +1,47 @@
+/*	全局定义　*/
+body,td,div,p{color:#1A438E;font:normal 12px/20px Tahoma,Verdana,sans-serif;}
+p{margin:0px; padding:0px;}
+body{background:#73a3d4; margin:5px 5px; padding:0px;}
+BODY {
+	SCROLLBAR-FACE-COLOR: #ecf3fb; FONT-SIZE: 9pt; SCROLLBAR-HIGHLIGHT-COLOR: #ffffff; SCROLLBAR-SHADOW-COLOR: #cccccc; COLOR: #000000; SCROLLBAR-3DLIGHT-COLOR: buttonface; SCROLLBAR-ARROW-COLOR: #000000; SCROLLBAR-TRACK-COLOR: #eaf0f5; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; SCROLLBAR-DARKSHADOW-COLOR: #ffffff; TEXT-DECORATION: none
+}
+ul{padding-left:10px; margin-left:10px; padding-bottom:0px; margin-bottom:0px;}
+input,select{color:navy;font:normal 12px/120% Tahoma,Verdana,sans-serif; height:19px;}
+input,textarea,hr{color:navy;font:normal 12px/120% Verdana,sans-serif;padding-left:2px;padding-right:2px;border:1px #8AB3DB solid;}
+.otherinput{color:navy;font:normal 12px/120% Verdana,sans-serif;padding-left:2px;padding-right:2px;border:1px #8AB3DB solid;}
+.noinput input{border:none;}
+td{border-color:#C9DBEF;}
+a{color:#1A438E;text-decoration:none;}
+a:hover{color:#000000;text-decoration:none;}
+form {margin:0px;}
+.grid{border:1px #B3CDE8 solid;border-collapse:collapse;}
+.nogrid{border:0px !important;}
+.fixed{table-layout:fixed;overflow:hidden;}
+/*	最外层表格 */
+.toptable{width:100%;background:#EEF7FD;}
+/*	列表头部的列名称栏 */
+.category{color:#003373;font-weight:bold; background:#FFFFFF;}
+/*	高亮背景 */
+.highlight{background:#ffffff;}
+/*	radio和checkbox样式 */
+.smallbox{height:14px !important;height:16px;border:0px !important;vertical-align: middle;}
+/*	手形光标 */
+.hand{cursor:hand;background:url(../images/menu_2.gif) no-repeat; width:176px; height:33px;padding-top:2px; text-align:center;}
+/*	按钮样式 */
+.button	{font:normal 12px/120% Verdana,'宋体';height:18px;
+border-left:1px #ced4e2 solid;
+border-top:1px #ced4e2 solid;
+border-right:1px #888888 solid;
+border-bottom:1px #888888 solid;
+background:	#dddddd;}
+/*	提示文本颜色  */
+.t1	{color:#ff6600;}
+/*	醒目文本颜色  */
+.t2	{color:red;}
+/*	灰调文本颜色  */
+.t3	{color:gray;}
+/*	黑色文本颜色  */
+.t4	{color:#000000;}
+/*	小字体 */
+.small{font:normal 12px/180% Verdana,'宋体';}
+br{font:normal 12px/5px Verdana,'宋体';}

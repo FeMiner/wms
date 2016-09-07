@@ -1,0 +1,101 @@
+A:link {
+	COLOR: #006699; TEXT-DECORATION: none
+}
+A:visited {
+	COLOR: #006699; TEXT-DECORATION: none
+}
+A:active {
+	COLOR: #006699; TEXT-DECORATION: none
+}
+A:hover {
+	COLOR: #000000
+}
+BODY {
+	margin-top: 0px;
+	margin-left: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	background-color:#DEEBEF;
+}
+BODY,TD,TH {
+	FONT-SIZE:12px;
+	color:#000000;
+}
+#login #login {
+	background-attachment: fixed;
+	background-image: url(../images/button_enter.jpg);
+	background-repeat: no-repeat;
+	background-position: center center;
+	height: 17px;
+	width: 39px;
+	BORDER-BOTTOM: #52798C 1px solid; 
+	BORDER-LEFT: #52798C 1px solid;
+	BORDER-RIGHT: #52798C 1px solid;
+	BORDER-TOP: #52798C 1px solid;
+	color:#52798C;
+}
+#login #reset {
+	background-attachment: fixed;
+	background-image: url(../images/button_reset.jpg);
+	background-repeat: no-repeat;
+	background-position: center center;
+	height: 17px;
+	width: 39px;
+	BORDER-BOTTOM: #52798C 1px solid; 
+	BORDER-LEFT: #52798C 1px solid;
+	BORDER-RIGHT: #52798C 1px solid;
+	BORDER-TOP: #52798C 1px solid;
+	color:#52798C;
+}
+#add {
+	height: 18px;
+	width: 35px;
+	background-color: #CCCCCC;
+	border: 1px solid #CCCCCC;
+}
+.tmpa:link {
+	COLOR: #000000; TEXT-DECORATION: none
+}
+.tmpa:visited {
+	COLOR: #000000; TEXT-DECORATION: none
+}
+.tmpa:active {
+	COLOR: #000000; TEXT-DECORATION: none
+}
+.tmpa:hover {
+	COLOR: #000000
+}
+#reset {
+	height: 18px;
+	width: 35px;
+	background-color: #CCCCCC;
+	border: 1px solid #CCCCCC;
+}
+#r_add #s_del {
+	height: 18px;
+	width: 35px;
+	background-color: #CCCCCC;
+	border: 1px solid #CCCCCC;
+	text-align: center;
+	vertical-align: middle;
+}
+
+
+
+#login #lg {
+	font-size: 12px;
+	color: #CCCCCC;
+}
+#list {
+	text-indent: 45px;
+	font-family: "ËÎÌו";
+	font-size: 16px;
+	font-style: normal;
+	font-weight: bold;
+	color: #333333;
+	vertical-align: bottom;
+}
+.big_td {
+	border: 1px solid #9CBED6;
+	margin-top: 15px;
+}

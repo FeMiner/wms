@@ -1,0 +1,145 @@
+/* Calendar: a Javascript class for Mootools that adds accessible and unobtrusive date pickers to your form elements <http://electricprism.com/aeron/calendar> */
+/* Experimental CSS for Calendar (navigation: 1), Copyright (c) 2007 Aeron Glemann <http://electricprism.com/aeron> */
+
+input.i-heart-ny,
+select.i-heart-ny {
+	width: 149px;
+}
+
+button.i-heart-ny {
+	background: url(i-heart-ny-icon.gif);
+	border: 0;
+	cursor: pointer;
+	float: left;
+	height: 20px;
+	margin-right: 6px;
+	width: 20px;
+}
+button.i-heart-ny:hover,
+button.i-heart-ny.active {
+	background-position: 0 20px;
+}
+
+div.i-heart-ny {
+	background: url(i-heart-ny.png);
+	height: 278px;
+	padding: 4px;
+	width: 164px;
+}	
+	div.i-heart-ny * {
+		margin: 0;
+		padding: 0;
+	}	
+	div.i-heart-ny div {
+		background-repeat: no-repeat;
+		background-position: 8px 8px;
+		cursor: move;
+		height: 278px;
+		overflow: hidden;
+		position: relative;
+		width: 164px;
+	}	
+	div.i-heart-ny.january div { background-image: url(i-heart-ny-jan.jpg); }	
+	div.i-heart-ny.february div { background-image: url(i-heart-ny-feb.jpg); }	
+	div.i-heart-ny.march div { background-image: url(i-heart-ny-mar.jpg); }	
+	div.i-heart-ny.april div { background-image: url(i-heart-ny-apr.jpg); }	
+	div.i-heart-ny.may div { background-image: url(i-heart-ny-may.jpg); }	
+	div.i-heart-ny.june div { background-image: url(i-heart-ny-jun.jpg); }	
+	div.i-heart-ny.july div { background-image: url(i-heart-ny-jul.jpg); }	
+	div.i-heart-ny.august div { background-image: url(i-heart-ny-aug.jpg); }	
+	div.i-heart-ny.september div { background-image: url(i-heart-ny-sep.jpg); }	
+	div.i-heart-ny.october div { background-image: url(i-heart-ny-oct.jpg); }	
+	div.i-heart-ny.november div { background-image: url(i-heart-ny-nov.jpg); }	
+	div.i-heart-ny.december div { background-image: url(i-heart-ny-dec.jpg); }	
+	
+	/* 
+	We won't be using the caption element traditionally
+	We have to make sure it doesn't take up space in the browser and offset the other elements
+	Unfortunately position: absolute is not supported by all browsers for table-caption
+	IEX only responds to line-height
+	*/
+	
+	div.i-heart-ny caption {
+		color: #808080;
+		height: 0%;
+		line-height: 0;
+	}
+	div.i-heart-ny caption a {
+		cursor: pointer;
+		display: block;
+		height: 25px;
+		overflow: hidden;
+		position: absolute;
+		text-indent: -100px;
+		top: 0;
+		width: 23px;
+		z-index: 200;
+	}
+	div.i-heart-ny caption a.prev {
+		background-image: url(i-heart-ny-prev.png);
+		left: 0;
+	}
+	div.i-heart-ny caption a.next {
+		background-image: url(i-heart-ny-next.png);
+		right: 0;
+	}
+	div.i-heart-ny caption a:hover {
+		background-position: 0 25px;
+	}
+	div.i-heart-ny caption span.month {
+		bottom: 8px;
+		font: normal 11px Arial, Helvetica, sans-serif;
+		position: absolute;
+		right: 10px;
+		z-index: 100;
+	}
+	
+	/* 
+	IEX won't work if all the children of the caption element are absolutely positioned
+	Since we can't just leave the year un-positioned, we will have to hide it
+	(Remarkably this actually works in IEX)
+	*/
+	
+	div.i-heart-ny caption span.year {
+		display: none;
+	}
+
+	div.i-heart-ny table {
+		border: 0;
+		border-collapse: collapse;
+		border-spacing: 0;
+		margin: 143px 10px 0 7px;
+	}
+	div.i-heart-ny tbody {
+		cursor: default;
+	}
+	div.i-heart-ny td {
+		border: 0;
+		color: #FFF;
+		font: normal 9px Arial, Helvetica, sans-serif;
+		height: 21px;
+		text-align: right;
+		vertical-align: bottom;
+		width: 21px;
+	}
+	div.i-heart-ny td.active,
+	div.i-heart-ny td.hover {
+		background: url(i-heart-ny-active.gif);
+		color: #25A8C2;
+		cursor: pointer;
+	}
+	div.i-heart-ny td.invalid {
+		background: url(i-heart-ny-invalid.gif);
+		color: #DA2727;
+	}
+	div.i-heart-ny td.valid {
+		color: #808080;
+		cursor: pointer;
+	}
+	div.i-heart-ny td.inactive {
+		background: url(i-heart-ny-inactive.gif);
+		color: #808080;
+	}
+	div.i-heart-ny thead {
+		display: none;
+	}

@@ -1,0 +1,131 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	background: #FFF;
+	padding: 18px;
+}
+
+a {
+	color: #09719D;
+	cursor: pointer;
+}
+a:hover {
+	color: #0FB8FF;
+}
+a.kbd {
+	background-color: #E5E5E5;
+	border-color: #ECECEC #ACACAC #ACACAC #ECECEC;
+	border-style: solid;
+	border-width: 2px;
+	color: #858585;
+	font-size: 12px;
+	margin-right: 6px;
+	padding: 1px 3px;
+}
+a.kbd:hover {
+	background-color: #0FB8FF;
+	border-color: #0FB8FF;
+	color: #FFF;
+}
+
+code {
+	background-color: #E5E5E5;
+	color: #666;
+	display: block;
+	font-size:12px;
+	float: left;
+	margin: 9px 0 18px 0;
+	width: 592px;
+	padding: 9px 18px;
+}
+
+em {
+	color: #998000;
+	font-style: normal;
+}
+
+form div {
+	clear: both;
+	margin-bottom: 18px;
+	overflow: hidden;
+}
+form fieldset {
+	border: #E5E5E5 2px solid;
+	clear: both;
+	margin-bottom: 9px;
+	overflow: hidden;
+	padding: 9px 18px;
+}
+form input,
+form select {
+	border-color: #ACACAC #E1E1E1 #E1E1E1 #ACACAC;
+	border-style: solid;
+	border-width: 2px;
+	float: left;
+	font-size:12px;
+	/*font: normal 12px Arial, sans-serif;*/
+	margin-right: 6px;
+	width: 105px;
+}
+form.long input, 
+form.long select {
+	width: 175px;
+}
+form.short input, 
+form.short select {
+	width: 75px;
+}
+form.long input.alternate,
+form.long select.alternate,
+form.long input.calendar,
+form.long select.calendar {
+	width: 149px;
+}
+
+form.short input.alternate,
+form.short select.alternate,
+form.short input.calendar,
+form.short select.calendar {
+	width: 49px;
+}
+
+/*form input {
+	padding: 1px 3px;
+}*/
+form label {
+	color: #262626;
+	font: normal 12px/18px Arial, sans-serif;
+	float: left;
+	margin-right: 6px;
+	text-align: right;
+	width: 50px;
+}
+form legend {
+	background: #E5E5E5;
+	color: #262626;
+	font: normal 12px/18px Arial, sans-serif;
+	margin-bottom: 9px;
+	padding: 2px 11px;
+}
+form button {
+	margin-left: 20px;
+}
+h1 {
+	color: #262626;
+	font: normal 14px/18px Arial, sans-serif;
+	margin-bottom: 18px;
+}
+
+p {
+	color: #666;
+	font: normal 12px/18px Arial, sans-serif;
+	margin-bottom: 9px;
+}
+
+strong {
+	color: #262626;
+	font-weight: normal;
+}
