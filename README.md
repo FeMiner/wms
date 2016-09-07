@@ -184,7 +184,7 @@
 
 仓库管理系统业务流程如图2.4所示。
 
-<embed src="./media/image2.png" width="553" height="432" />
+<img src="./media/image2.png" width="553" height="432" />
 
 图2.4 仓库管理系统业务流程图
 
@@ -195,7 +195,7 @@
 
 数据流程分析是通过分层的数据流程图来实现的，下图为本系统的数据流程图。
 
-<embed src="./media/image3.png" width="553" height="286" />
+<img src="./media/image3.png" width="553" height="286" />
 
 图2.5 仓库管理系统数据流程图
 
@@ -225,7 +225,7 @@
 
 系统功能结构图如图4-1所示：
 
-<embed src="./media/image4.png" width="553" height="414" />
+<img src="./media/image4.png" width="553" height="414" />
 
 <span id="_Toc208830640" class="anchor"><span id="_Toc371666020" class="anchor"><span id="_Toc376785393" class="anchor"></span></span></span>3.2 系统物理配置方案设计
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -275,59 +275,59 @@
 
 联系：用菱形表示，菱形框内标注联系名，并月无向边分别与有关实体连接起来，同时在无向边旁标上联系的类型（1：l、l:n或m:n）。
 
-<embed src="./media/image6.png" width="346" height="140" />
+<img src="./media/image6.png" width="346" height="140" />
 
 图4.2.1-1管理员信息实体E-R图
 
-<embed src="./media/image7.png" width="245" height="178" />
+<img src="./media/image7.png" width="245" height="178" />
 
 图4.2.1-2员工部门信息实体E-R图
 
-<embed src="./media/image8.png" width="422" height="243" />
+<img src="./media/image8.png" width="422" height="243" />
 
 图4.2.1-3员工信息实体E-R图
 
-<embed src="./media/image9.png" width="360" height="268" />
+<img src="./media/image9.png" width="360" height="268" />
 
 图4.2.1-4仓库信息实体E-R图
 
-<embed src="./media/image10.png" width="477" height="238" />
+<img src="./media/image10.png" width="477" height="238" />
 
 图4.2.1-5出/入库信息实体E-R图
 
-<embed src="./media/image11.png" width="489" height="298" />
+<img src="./media/image11.png" width="489" height="298" />
 
 图4.2.1-6往来单位信息实体E-R图
 
-<embed src="./media/image12.png" width="464" height="310" />
+<img src="./media/image12.png" width="464" height="310" />
 
 图4.2.1-7入库单信息实体E-R图
 
-<embed src="./media/image13.png" width="464" height="312" />
+<img src="./media/image13.png" width="464" height="312" />
 
 图4.2.1-8出库单信息实体E-R图
 
-<embed src="./media/image14.png" width="391" height="278" />
+<img src="./media/image14.png" width="391" height="278" />
 
 图4.2.1-9调拨单信息实体E-R图
 
-<embed src="./media/image15.png" width="390" height="294" />
+<img src="./media/image15.png" width="390" height="294" />
 
 图4.2.1-10盘点单信息实体E-R图
 
-<embed src="./media/image16.png" width="553" height="295" />
+<img src="./media/image16.png" width="553" height="295" />
 
 图4.2.1-11货品信息实体E-R图
 
-<embed src="./media/image17.png" width="164" height="230" />
+<img src="./media/image17.png" width="164" height="230" />
 
 图4.2.1-12计量单位信息实体E-R图
 
-<embed src="./media/image18.png" width="247" height="144" /> <embed src="./media/image19.png" width="262" height="147" />
+<img src="./media/image18.png" width="247" height="144" /> <img src="./media/image19.png" width="262" height="147" />
 
 图4.2.1-12货品分类信息实体E-R图
 
-<embed src="./media/image20.png" width="552" height="537" />
+<img src="./media/image20.png" width="552" height="537" />
 
 图4.2.1-13仓库管理系统实体联系图
 
